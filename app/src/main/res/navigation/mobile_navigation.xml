@@ -12,9 +12,14 @@
         tools:layout="@layout/fragment_info" />
 
     <fragment
-        android:id="@+id/nav_test"
-        android:name="com.example.geography.fragments.TestFragment"
-        android:label="@string/menu_test"
+        android:id="@+id/nav_test1"
+        android:name="com.example.geography.fragments.Test1Fragment"
+        android:label="@string/menu_test1"
         tools:layout="@layout/fragment_test" />
 
+    <fragment
+        android:id="@+id/nav_test2"
+        android:name="com.example.geography.fragments.Test2Fragment"
+        android:label="@string/menu_test2"
+        tools:layout="@layout/fragment_test2" />
 </navigation>
