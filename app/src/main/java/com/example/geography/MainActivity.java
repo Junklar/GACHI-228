@@ -3,19 +3,16 @@ package com.example.geography;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 
-import com.google.android.material.navigation.NavigationView;
-
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.geography.databinding.MainBinding;
-import static com.example.geography.TestQ.*;
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.Random;
 
@@ -24,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
     private NavController navController;
     private AppBarConfiguration mAppBarConfiguration;
     private MainBinding binding;
-    public static int qIndex = 0;
 
     @SuppressLint("ResourceType")
     @Override
@@ -34,7 +30,8 @@ public class MainActivity extends AppCompatActivity {
         binding = MainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        randomQ();
+        randomTest(Q.Q1, Test.tests[0].testAns);
+        randomTest(Q.Q2, Test.tests[1].testAns);
 
         setSupportActionBar(binding.toolbar);
         DrawerLayout drawer = binding.drawerLayout;
@@ -54,13 +51,12 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration) || super.onSupportNavigateUp();
     }
 
-    private void randomQ() {
+    private void randomTest(String[][] q, int[] qAns) {
         final Random r = new Random();
         for (int i = 0; i < q.length; i++) { // Рандом ответов
             final String[] s = q[i];
             for (int j = q[i].length - 1; j > 0; j--) {
-                final int jMO = j-1;
-                final int index = (jMO != 0) ? r.nextInt(jMO)+1 : 1;
+                final int index = (j-1 != 0) ? r.nextInt(j-1)+1 : 1;
                 final boolean jQAns = j == qAns[i];
                 if (jQAns || index == qAns[i])
                     qAns[i] = jQAns ? index : j;
@@ -68,22 +64,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         for (int i = q.length - 1; i > 0; i--) { // Рандом вопросов
-            final int index = r.nextInt(i);
-            int swapQAns = qAns[index]; qAns[index] = qAns[i]; qAns[i] = swapQAns;
-            String[] tmp = q[index]; q[index] = q[i]; q[i] = tmp;
-        }
-        for (int i = 0; i < q2.length; i++) { // Рандом ответов
-            final String[] s = q[i];
-            for (int j = q[i].length - 1; j > 0; j--) {
-                final int jMO = j-1;
-                final int index = (jMO != 0) ? r.nextInt(jMO)+1 : 1;
-                final boolean jQAns = j == qAns[i];
-                if (jQAns || index == qAns[i])
-                    qAns[i] = jQAns ? index : j;
-                String tmp = s[index]; s[index] = s[j]; s[j] = tmp;
-            }
-        }
-        for (int i = q2.length - 1; i > 0; i--) { // Рандом вопросов
             final int index = r.nextInt(i);
             int swapQAns = qAns[index]; qAns[index] = qAns[i]; qAns[i] = swapQAns;
             String[] tmp = q[index]; q[index] = q[i]; q[i] = tmp;

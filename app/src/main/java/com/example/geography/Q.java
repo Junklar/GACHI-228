@@ -1,7 +1,7 @@
 package com.example.geography;
 
-public class TestQ {
-    public static String[][] q = {
+public class Q {
+    public static String[][] Q1 = {
             {"З чого складається водна оболонка Землі - гідросфера?",
                     "з вод суші і Світового океану",
                     "з вод суші, Світового океану і води в атмосфері - правильно",
@@ -26,18 +26,8 @@ public class TestQ {
             {"Яка течія починається біля берегів Північної Америки і має північно-східний напрямок?:",
                     "Гольфстрім - правильно","Західних вітрів","Лабрадорський","Норвезький"}
     };
-    public static String[][] q2 = {
+    public static String[][] Q2 = {
             {"Як називаються ділянки суші, оточені з трьох сторін водою, а з четвертого - з'єднані з нею?",
                     "материки","архіпелаги","півострова - правильно","острова"},
     };
-
-
-    public static int[] qAns = {
-            2,3,4,4,1,2,2,4,3,1
-    };
-    public static int[] qAns2 = {
-            3
-    };
-    public static boolean[][] ans = new boolean[q.length][q[0].length-1];
-    public static boolean[][] ans2 = new boolean[q2.length][q2[0].length-1];
 }
