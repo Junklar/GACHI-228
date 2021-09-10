@@ -1,58 +1,53 @@
 package com.example.geography.fragments;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
 import com.example.geography.Test;
-import com.example.geography.databinding.FragmentTestBinding;
+import com.example.geography.TestPagerAdapter;
+import com.example.geography.databinding.FragmentTest1Binding;
 
 public class Test1Fragment extends Fragment {
-    private FragmentTestBinding binding;
-    private CheckBox[] checkBoxes;
-    private static int qIndex = 0;
+    private FragmentTest1Binding binding;
+
     private static final Test test = Test.tests[0];
 
-
-    @SuppressLint({"SetTextI18n", "ResourceType"})
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentTestBinding.inflate(inflater, container, false);
-        checkBoxes = new CheckBox[]{binding.checkBox1, binding.checkBox2, binding.checkBox3, binding.checkBox4};
-        setQ(0);
+    public View onCreateView(LayoutInflater inflater, ViewGroup group, Bundle state) {
+        binding = FragmentTest1Binding.inflate(inflater, group, false);
+        binding.tabLayout.setupWithViewPager(binding.pager);
+        binding.pager.setAdapter(new TestPagerAdapter(getParentFragmentManager(),test));
+        return binding.getRoot();
+        /*setQ(0);
         binding.back.setOnClickListener((v) -> setQ(-1));
         binding.next.setOnClickListener((v) -> setQ(1));
 
-        binding.finish.setOnClickListener((e)->{ getActivity().onBackPressed(); });
-        return binding.getRoot();
+        binding.finish.setOnClickListener((e)->{
+            getActivity().onBackPressed();
+            ListViewAdapter.arrayList.remove(test);
+            ListViewAdapter.arrayList.add(test);
+        });
+        return binding.getRoot();*/
     }
 
-    private void setQ(int next) {
-        for (int i = 0; i < checkBoxes.length; i++)
-            test.ans[qIndex][i] = checkBoxes[i].isChecked();
-        qIndex += next;
-        if (qIndex == test.strings.length || qIndex == -1) {
-            qIndex -= next;
+    /*private void setQ(int next) {
+        for (int i = 0; i < list.length; i++)
+            test.userItems[qIndex].ans = list[i].isChecked() ? (i+1) : 0;
+        final int qNext = qIndex + next;
+        if (qNext == test.items.length || qNext == -1)
             return;
+        qIndex = qNext;
+        for (int j = 0; j < list.length; j++) {
+            list[j].setText(test.items[qIndex].strings[j+1]);
+            list[j].setChecked(test.userItems[qIndex].ans == (j+1));
         }
-        for (int j = 0; j < checkBoxes.length; j++) {
-            checkBoxes[j].setText(test.strings[qIndex][j+1]);
-            checkBoxes[j].setChecked(test.ans[qIndex][j]);
-        }
-        binding.qText.setText(test.strings[qIndex][0]);
+        binding.qText.setText(test.items[qIndex].strings[0]);
         binding.progressBar4.setProgress(qIndex * 10);
         binding.progressBar4.setSecondaryProgress(qIndex > 0? (qIndex * 10) + 10 : 10);
-    }
+    }*/
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
+    public void onDestroyView() { super.onDestroyView(); binding = null; }
 }

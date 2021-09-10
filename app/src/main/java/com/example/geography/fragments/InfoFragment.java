@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.geography.ListViewAdapter;
 import com.example.geography.databinding.FragmentInfoBinding;
 
 public class InfoFragment extends Fragment {
@@ -16,7 +15,7 @@ public class InfoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentInfoBinding.inflate(inflater, container, false);
 
-        binding.includelist.setAdapter(new ListViewAdapter());
+        //binding.includelist.setAdapter(new ListViewAdapter(getContext()));
 
         return binding.getRoot();
     }

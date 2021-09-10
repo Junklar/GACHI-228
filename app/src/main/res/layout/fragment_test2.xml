@@ -33,25 +33,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/q_text">
 
-        <CheckBox
-            android:id="@+id/checkBox1"
+        <RadioButton
+            android:id="@+id/radio1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="RadioButton" />
 
-        <CheckBox
-            android:id="@+id/checkBox2"
+        <RadioButton
+            android:id="@+id/radio2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="RadioButton" />
 
-        <CheckBox
-            android:id="@+id/checkBox3"
+        <RadioButton
+            android:id="@+id/radio3"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="RadioButton" />
 
-        <CheckBox
-            android:id="@+id/checkBox4"
+        <RadioButton
+            android:id="@+id/radio4"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="RadioButton" />
     </LinearLayout>
 
     <ImageButton

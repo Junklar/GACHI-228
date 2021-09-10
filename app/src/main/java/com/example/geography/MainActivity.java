@@ -30,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
         binding = MainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        randomTest(Q.Q1, Test.tests[0].testAns);
-        randomTest(Q.Q2, Test.tests[1].testAns);
+        Test.tests[0].randomize();
+        Test.tests[1].randomize();
 
         setSupportActionBar(binding.toolbar);
         DrawerLayout drawer = binding.drawerLayout;
@@ -50,24 +50,4 @@ public class MainActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration) || super.onSupportNavigateUp();
     }
-
-    private void randomTest(String[][] q, int[] qAns) {
-        final Random r = new Random();
-        for (int i = 0; i < q.length; i++) { // Рандом ответов
-            final String[] s = q[i];
-            for (int j = q[i].length - 1; j > 0; j--) {
-                final int index = (j-1 != 0) ? r.nextInt(j-1)+1 : 1;
-                final boolean jQAns = j == qAns[i];
-                if (jQAns || index == qAns[i])
-                    qAns[i] = jQAns ? index : j;
-                String tmp = s[index]; s[index] = s[j]; s[j] = tmp;
-            }
-        }
-        for (int i = q.length - 1; i > 0; i--) { // Рандом вопросов
-            final int index = r.nextInt(i);
-            int swapQAns = qAns[index]; qAns[index] = qAns[i]; qAns[i] = swapQAns;
-            String[] tmp = q[index]; q[index] = q[i]; q[i] = tmp;
-        }
-    }
-
 }
